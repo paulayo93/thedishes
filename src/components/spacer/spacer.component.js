@@ -1,4 +1,5 @@
-import styled from "styled-components/native";
+import styled, { useTheme } from "styled-components/native";
+import React from "react";
 
 const sizeVariant = {
   small: 1,
@@ -10,7 +11,7 @@ const positionVariant = {
   top: "marginTop",
   left: "marginLeft",
   right: "marginRight",
-  down: "margin-bottom",
+  down: "marginBottom",
 };
 
 const getVariant = (position, size, theme) => {
@@ -21,9 +22,23 @@ const getVariant = (position, size, theme) => {
   return `${property}:${value}`;
 };
 
-export const Spacer = styled.View`
-  ${({ position, size, theme }) => getVariant(position, size, theme)}
+const SpacerView = styled.View`
+  ${({ variant }) => variant};
 `;
+
+// android optimizations
+export const Spacer = ({ size, position, children }) => {
+  const theme = useTheme();
+  const variant = getVariant(position, size, theme);
+
+  return <SpacerView variant={variant}>{children}</SpacerView>;
+};
+
+// works on ios
+
+// export const Spacer = styled.View`
+//   ${({ position, size, theme }) => getVariant(position, size, theme)}
+// `;
 
 Spacer.defaultProps = {
   position: "top",

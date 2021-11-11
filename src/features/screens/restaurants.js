@@ -2,31 +2,63 @@ import React from "react";
 import RestaurantInfoCard from "../components/restaurant-info-card.component";
 import { Searchbar } from "react-native-paper";
 import styled from "styled-components/native";
-import { StatusBar } from "react-native";
+import { StatusBar, FlatList } from "react-native";
+import { Spacer } from "../../components/spacer/spacer.component";
+
+// todo: make the card item with flatlist
 
 const Restaurants = () => (
   <SafeArea>
     <SearchContainer>
       <Searchbar />
     </SearchContainer>
-    <RestaurantListContainer>
-      <RestaurantInfoCard />
-    </RestaurantListContainer>
+
+    <RestaurantList
+      data={[
+        { name: 1 },
+        { name: 2 },
+        { name: 3 },
+        { name: 4 },
+        { name: 5 },
+        { name: 6 },
+        { name: 7 },
+        { name: 8 },
+        { name: 9 },
+        { name: 10 },
+        { name: 11 },
+        { name: 12 },
+        { name: 13 },
+        { name: 14 },
+      ]}
+      renderItem={() => (
+        <Spacer position="down" size="large">
+          <RestaurantInfoCard />
+        </Spacer>
+      )}
+      keyExtractor={(item) => item.name}
+    />
   </SafeArea>
 );
 
 const SafeArea = styled.SafeAreaView`
   flex: 1;
-  ${(props) => props.isAndroid && `margin-top: ${StatusBar.currentHeight}px`}
+  ${StatusBar.currentHeight && `margin-top: ${StatusBar.currentHeight}px`};
 `;
+
 const SearchContainer = styled.View`
   padding: ${(props) => props.theme.space[3]};
 `;
 
-const RestaurantListContainer = styled.View`
-  flex: 1;
-  padding: ${(props) => props.theme.space[3]};
-  background-color: white;
-`;
+// const RestaurantListContainer = styled.View`
+//   flex: 1;
+//   padding: ${(props) => props.theme.space[3]};
+//   background-color: white;
+// `;
+
+const RestaurantList = styled(FlatList).attrs({
+  contentContainerStyle: {
+    padding: 16,
+  },
+})``;
 
 export default Restaurants;
