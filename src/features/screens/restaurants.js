@@ -1,44 +1,50 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import RestaurantInfoCard from "../components/restaurant-info-card.component";
 import { Searchbar } from "react-native-paper";
 import styled from "styled-components/native";
 import { StatusBar, FlatList } from "react-native";
 import { Spacer } from "../../components/spacer/spacer.component";
-
+import {
+  restaurantRequest,
+  restaurantsTransform,
+} from "../../services/restaurants/restaurants.service.component";
 // todo: make the card item with flatlist
 
-const Restaurants = () => (
-  <SafeArea>
-    <SearchContainer>
-      <Searchbar />
-    </SearchContainer>
+const Restaurants = () => {
+  const [restaurantItems, setRestaurantItems] = useState([]);
+  const getRest = () => {
+    restaurantRequest()
+      .then(restaurantsTransform)
+      .then((data) => {
+        //  console.log(data)
+        setRestaurantItems(data);
+      });
+  };
 
-    <RestaurantList
-      data={[
-        { name: 1 },
-        { name: 2 },
-        { name: 3 },
-        { name: 4 },
-        { name: 5 },
-        { name: 6 },
-        { name: 7 },
-        { name: 8 },
-        { name: 9 },
-        { name: 10 },
-        { name: 11 },
-        { name: 12 },
-        { name: 13 },
-        { name: 14 },
-      ]}
-      renderItem={() => (
-        <Spacer position="down" size="large">
-          <RestaurantInfoCard />
-        </Spacer>
-      )}
-      keyExtractor={(item) => item.name}
-    />
-  </SafeArea>
-);
+  //  console.log(items)
+
+  useEffect(() => {
+    getRest();
+  }, []);
+
+  return (
+    <SafeArea>
+      <SearchContainer>
+        <Searchbar />
+      </SearchContainer>
+
+      <RestaurantList
+        data={restaurantItems}
+        renderItem={({ item }) => (
+          <Spacer position="down" size="large">
+            <RestaurantInfoCard restaurant={item} />
+          </Spacer>
+        )}
+        keyExtractor={(item) => item.name}
+      />
+    </SafeArea>
+  );
+};
 
 const SafeArea = styled.SafeAreaView`
   flex: 1;
