@@ -46,7 +46,7 @@ export const AppNavigator = ({ navigation, route }) => (
         tabBarInactiveTintColor: "gray",
         headerShown: false,
       })}
-      initialRouteName={"Settings"}
+      // initialRouteName={"Settings"}
     >
       <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
       <Tab.Screen name="Map" component={MapScreen} />
