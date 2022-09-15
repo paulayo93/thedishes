@@ -36,16 +36,11 @@ const createScreenOptions = ({ route }) => {
 export const AppNavigator = ({ navigation, route }) => (
   <NavigationContainer>
     <Tab.Navigator
-      screenOptions={({ navigation, route }) => ({
-        tabBarIcon: ({ size, color }) => {
-          const iconName = TAB_ICON[route.name];
-
-          return <Ionicons name={iconName} size={size} color={color} />;
-        },
-        tabBarActiveTintColor: "tomato",
-        tabBarInactiveTintColor: "gray",
-        headerShown: false,
-      })}
+      screenOptions={createScreenOptions}
+      tabBarOptions={{
+        activeTintColor: "tomato",
+        inactiveTintColor: "gray",
+      }}
       // initialRouteName={"Settings"}
     >
       <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
