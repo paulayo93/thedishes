@@ -24,6 +24,7 @@ export const RestaurantsNavigator = () => {
     //   headerMode="none"
     headerShown={false}
       screenOptions={{
+        header: () => null,
         // ...TransitionPresets.ModalPresentationIOS,
         // presentation: 'modal'
       }}

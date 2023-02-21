@@ -18,9 +18,17 @@
     ],
     "ios": {
       "supportsTablet": true,
-      "bundleIdentifier": "com.paulayo.MealsToGo"
+      "bundleIdentifier": "com.paulayo.MealsToGo",
+      "config": {
+        "googleMapsApiKey": "AIzaSyAhdhlGQOE3G97BxmZVXBgAr0m_W4oKPLM"
+      }
     },
     "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAhdhlGQOE3G97BxmZVXBgAr0m_W4oKPLM"
+        }
+      },
       "adaptiveIcon": {
         "foregroundImage": "./assets/adaptive-icon.png",
         "backgroundColor": "#FFFFFF"

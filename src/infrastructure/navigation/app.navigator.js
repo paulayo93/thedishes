@@ -24,7 +24,7 @@ const Settings = () => (
 );
 
 const createScreenOptions = ({ route }) => {
-  console.log(route);
+  // console.log(route);
   const iconName = TAB_ICON[route.name];
   return {
     tabBarIcon: ({ size, color }) => (
@@ -37,11 +37,13 @@ export const AppNavigator = ({ navigation, route }) => (
   <NavigationContainer>
     <Tab.Navigator
       screenOptions={createScreenOptions}
-      tabBarOptions={{
-        activeTintColor: "tomato",
-        inactiveTintColor: "gray",
-      }}
-      // initialRouteName={"Settings"}
+      tabBarActiveTintColor={"blue"}
+      tabBarInactiveTintColor={"gray"}
+      // tabBarOptions={{
+      //   activeTintColor: "tomato",
+      //   inactiveTintColor: "gray",
+      // }}
+      // initialRouteName={"Map"}
     >
       <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
       <Tab.Screen name="Map" component={MapScreen} />
