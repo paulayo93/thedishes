@@ -1,3 +1,4 @@
+import { initializeApp } from 'firebase/app';
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
 import { ThemeProvider } from "styled-components/native";
@@ -17,6 +18,19 @@ import { LocationContextProvider } from "./src/services/location/location.contex
 import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 
 import { Text, View } from "react-native";
+
+// Initialize Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyALJuf_fMTEA5euK3WRXOhAv-C2B-LhzrU",
+  authDomain: "animated-radar-378111.firebaseapp.com",
+  projectId: "animated-radar-378111",
+  storageBucket: "animated-radar-378111.appspot.com",
+  messagingSenderId: "682940494117",
+  appId: "1:682940494117:web:b30ff5a51fd11326bbeacc",
+  measurementId: "G-DPLDTC8469",
+};
+
+const app = initializeApp(firebaseConfig);
 
 export default function App() {
   const [oswaldLoaded] = useOswald({

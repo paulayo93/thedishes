@@ -1,5 +1,6 @@
 {
     "cSpell.words": [
         "Favourites"
-    ]
+    ],
+    "java.compile.nullAnalysis.mode": "automatic"
 }
