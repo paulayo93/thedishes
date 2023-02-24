@@ -1,4 +1,4 @@
-import { initializeApp } from 'firebase/app';
+// import * as firebase from "firebase";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
 import { ThemeProvider } from "styled-components/native";
@@ -8,16 +8,14 @@ import {
   Oswald_400Regular,
 } from "@expo-google-fonts/oswald";
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
+import { initializeApp } from "firebase/app";
+import { getAuth } from "firebase/auth";
 
 // import { theme } from "./src/infrastructure/theme";
 import { theme } from "./src/infrastructure/theme";
 import { Navigation } from "./src/infrastructure/navigation";
 
-import { RestaurantsContextProvider } from "./src/services/restaurants/restaurants.context";
-import { LocationContextProvider } from "./src/services/location/location.context";
-import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
-
-import { Text, View } from "react-native";
+import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 
 // Initialize Firebase
 const firebaseConfig = {
@@ -31,6 +29,8 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
+
+export const auth = getAuth(app);
 
 export default function App() {
   const [oswaldLoaded] = useOswald({
@@ -47,17 +47,10 @@ export default function App() {
 
   return (
     <>
-      {/* <View>
-      <Text>Location</Text>
-      </View> */}
       <ThemeProvider theme={theme}>
-        <FavouritesContextProvider>
-          <LocationContextProvider>
-            <RestaurantsContextProvider>
-              <Navigation />
-            </RestaurantsContextProvider>
-          </LocationContextProvider>
-        </FavouritesContextProvider>
+        <AuthenticationContextProvider>
+          <Navigation />
+        </AuthenticationContextProvider>
       </ThemeProvider>
       <ExpoStatusBar style="auto" />
     </>
