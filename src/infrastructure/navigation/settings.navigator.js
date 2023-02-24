@@ -15,6 +15,7 @@ export const SettingsNavigator = ({ route, navigation }) => {
       headerMode="screen"
       screenOptions={{
         cardStyleInterpolator: CardStyleInterpolators.forHorizontalIOS,
+        header: () => null,
       }}
     >
       <SettingsStack.Screen
