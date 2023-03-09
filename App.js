@@ -1,4 +1,7 @@
-// import * as firebase from "firebase";
+import * as dotenv from "dotenv";
+
+dotenv.config();
+
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import React from "react";
 import { ThemeProvider } from "styled-components/native";
@@ -19,13 +22,13 @@ import { AuthenticationContextProvider } from "./src/services/authentication/aut
 
 // Initialize Firebase
 const firebaseConfig = {
-  apiKey: "AIzaSyALJuf_fMTEA5euK3WRXOhAv-C2B-LhzrU",
-  authDomain: "animated-radar-378111.firebaseapp.com",
-  projectId: "animated-radar-378111",
-  storageBucket: "animated-radar-378111.appspot.com",
-  messagingSenderId: "682940494117",
-  appId: "1:682940494117:web:b30ff5a51fd11326bbeacc",
-  measurementId: "G-DPLDTC8469",
+  apiKey: process.env.apiKey,
+  authDomain: process.env.authDomain,
+  projectId: process.env.projectId,
+  storageBucket: process.env.storageBucket,
+  messagingSenderId: process.env.messagingSenderId,
+  appId: process.env.appId,
+  measurementId: process.env.messagingSenderId,
 };
 
 const app = initializeApp(firebaseConfig);
