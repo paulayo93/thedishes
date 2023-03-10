@@ -17,16 +17,28 @@
       "**/*"
     ],
     "ios": {
-      "supportsTablet": true
-    },
-    "android": {
-      "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
-        "backgroundColor": "#FFFFFF"
+      "supportsTablet": true,
+      "bundleIdentifier": "com.paulayo.MealsToGo",
+      "config": {
+        "googleMapsApiKey": "AIzaSyAhdhlGQOE3G97BxmZVXBgAr0m_W4oKPLM"
       }
     },
-    "web": {
-      "favicon": "./assets/favicon.png"
+    "android": {
+      "config": {
+        "googleMaps": {
+          "apiKey": "AIzaSyAhdhlGQOE3G97BxmZVXBgAr0m_W4oKPLM"
+        }
+      },
+      "adaptiveIcon": {
+        "foregroundImage": "./assets/icon.png",
+        "backgroundColor": "#FFFFFF"
+      },
+      "package": "com.paulayo.MealsToGo"
+    },
+    "extra": {
+      "eas": {
+        "projectId": "62e47f44-16a8-4886-ba82-44e4e45cf0a7"
+      }
     }
   }
 }

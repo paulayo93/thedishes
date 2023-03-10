@@ -1,26 +1,25 @@
 import React from "react";
-import { Card } from "react-native-paper";
-import styled from "styled-components/native";
-// import { Text } from "react-native";
 import { SvgXml } from "react-native-svg";
-import { Spacer } from "./../../components/spacer/spacer.component";
-import { Text } from "./../../components/typography/text.component";
-import star from "./../../../assets/star";
-import open from "./../../../assets/open";
+import { View } from "react-native";
+
+import { Favourite } from "../../../components/favourites/favourite.component";
+import { Spacer } from "../../../components/spacer/spacer.component";
+import { Text } from "../../../components/typography/text.component";
+import star from "../../../../assets/star";
+import open from "../../../../assets/open";
+
 import {
   RestaurantCard,
   RestaurantCardCover,
-  Address,
   Info,
-  Rating,
   Section,
   SectionEnd,
+  Rating,
   Icon,
+  Address,
 } from "./restaurant-info-card.styles";
 
-//  TODO: Continue with SVG implementaton
-
-const RestaurantInfoCard = ({ restaurant = {} }) => {
+export const RestaurantInfoCard = ({ restaurant = {} }) => {
   const {
     name = "Some Restaurant",
     icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
@@ -31,19 +30,28 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
     isOpenNow = true,
     rating = 4,
     isClosedTemporarily = true,
+    placeId,
   } = restaurant;
 
   const ratingArray = Array.from(new Array(Math.floor(rating)));
 
   return (
     <RestaurantCard elevation={5}>
-      <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+      <View>
+        <Favourite restaurant={restaurant} />
+        <RestaurantCardCover key={name} source={{ uri: photos[0] }} />
+      </View>
       <Info>
         <Text variant="label">{name}</Text>
         <Section>
           <Rating>
-            {ratingArray.map((item, index) => (
-              <SvgXml key={index} xml={star} width={20} height={20} />
+            {ratingArray.map((_, i) => (
+              <SvgXml
+                key={`star-${placeId}-${i}`}
+                xml={star}
+                width={20}
+                height={20}
+              />
             ))}
           </Rating>
           <SectionEnd>
@@ -63,5 +71,3 @@ const RestaurantInfoCard = ({ restaurant = {} }) => {
     </RestaurantCard>
   );
 };
-
-export default RestaurantInfoCard;
