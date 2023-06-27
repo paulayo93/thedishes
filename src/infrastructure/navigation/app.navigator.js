@@ -36,6 +36,7 @@ export const AppNavigator = () => (
       <RestaurantsContextProvider>
         <Tab.Navigator
           screenOptions={createScreenOptions}
+          // initialRouteName="Map"
           // tabBarOptions={{
           //   activeTintColor: "blue",
           //   inactiveTintColor: "gray",

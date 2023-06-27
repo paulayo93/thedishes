@@ -28,6 +28,7 @@ export const LoginScreen = ({ navigation }) => {
           value={email}
           textContentType="emailAddress"
           keyboardType="email-address"
+          defaultValue=""
           autoCapitalize="none"
           onChangeText={(u) => setEmail(u)}
         />
@@ -35,6 +36,7 @@ export const LoginScreen = ({ navigation }) => {
           <AuthInput
             label="Password"
             value={password}
+            defaultValue=""
             textContentType="password"
             secureTextEntry
             autoCapitalize="none"

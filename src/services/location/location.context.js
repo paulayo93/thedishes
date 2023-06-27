@@ -2,7 +2,6 @@ import React, { useState, useEffect } from "react";
 
 import { locationRequest, locationTransform } from "./location.service";
 
-
 export const LocationContext = React.createContext();
 
 export const LocationContextProvider = ({ children }) => {
@@ -24,7 +23,7 @@ export const LocationContextProvider = ({ children }) => {
     locationRequest(keyword.toLowerCase())
       .then(locationTransform)
       .then((result) => {
-
+        setError(null);
         setIsLoading(false);
         setLocation(result);
       })
@@ -37,9 +36,9 @@ export const LocationContextProvider = ({ children }) => {
   return (
     <LocationContext.Provider
       value={{
-        location,
         isLoading,
         error,
+        location,
         search: onSearch,
         keyword,
       }}

@@ -1,30 +1,29 @@
 import React, { useContext, useState, useEffect } from "react";
-import MapView, { PROVIDER_GOOGLE } from "react-native-maps";
-// import styled from "styled-components/native";
+import MapView from "react-native-maps";
+import styled from "styled-components/native";
 
-import { LocationContext } from "./../../../services/location/location.context";
-import { RestaurantsContext } from "./../../../services/restaurants/restaurants.context";
+import { LocationContext } from "../../../services/location/location.context";
+import { RestaurantsContext } from "../../../services/restaurants/restaurants.context";
 
-import { Search } from "./../components/search.component";
-import { MapCallout } from "./../components/map-callout.component";
+import { Search } from "../components/search.component";
+import { MapCallout } from "../components/map-callout.component";
 
-// const Map = styled(MapView)`
-//   height: 100%;
-//   width: 100%;
-// `;
+const Map = styled(MapView)`
+  height: 100%;
+  width: 100%;
+`;
 
-export const MapScreen = ({ navigation }) => {
+const RestaurantMap = ({ navigation }) => {
   const { location } = useContext(LocationContext);
   const { restaurants = [] } = useContext(RestaurantsContext);
-
 
   const [latDelta, setLatDelta] = useState(0);
 
   const { lat, lng, viewport } = location;
 
   useEffect(() => {
-    const northeastLat = viewport?.northeast?.lat;
-    const southwestLat = viewport?.southwest?.lat;
+    const northeastLat = viewport.northeast.lat;
+    const southwestLat = viewport.southwest.lat;
 
     setLatDelta(northeastLat - southwestLat);
   }, [location, viewport]);
@@ -32,9 +31,7 @@ export const MapScreen = ({ navigation }) => {
   return (
     <>
       <Search />
-      <MapView
-        style={{ height: "100%", width: '100%' }}
-        provider={PROVIDER_GOOGLE}
+      <Map
         region={{
           latitude: lat,
           longitude: lng,
@@ -64,7 +61,22 @@ export const MapScreen = ({ navigation }) => {
             </MapView.Marker>
           );
         })}
-      </MapView>
+      </Map>
     </>
   );
+};
+
+export const MapScreen = ({ navigation }) => {
+  const { location } = useContext(LocationContext);
+  if (!location) {
+    return (
+      <Map
+        region={{
+          latitude: 0,
+          longitude: 0,
+        }}
+      />
+    );
+  }
+  return <RestaurantMap navigation={navigation} />;
 };
